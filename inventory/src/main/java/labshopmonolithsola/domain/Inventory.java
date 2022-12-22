@@ -12,21 +12,10 @@ import java.util.Date;
 @Data
 
 public class Inventory  {
-
-
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
-    
+    @GeneratedValue(strategy=GenerationType.AUTO)    
     private Long id;
-    
-    
-    
-    
     
     private Long stock;
 
@@ -42,6 +31,10 @@ public class Inventory  {
 
 
     public void decreaseStock(DecreaseStockCommand decreaseStockCommand){
+        if( getStock() < decreaseStockCommand.getQty() ){
+            System.out.println(" No enough Stock!!! ~~~ ");
+        }
+        setStock( getStock() - decreaseStockCommand.getQty()); // 주문한 qty 만큼 stock 감소
     }
 
 
